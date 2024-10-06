@@ -1,3 +1,4 @@
 __pycache__
 portfolio_env
 *.sqlite3
+.env
