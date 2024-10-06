@@ -791,24 +791,42 @@ h1, h2, h3, h4, h5, h6, figure {
   margin-bottom: 0;
 }
 #fh5co-started .fh5co-heading h2 {
-  color: #fff;
+  color: #000;
   margin-bottom: 20px !important;
 }
 #fh5co-started .fh5co-heading p {
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(0, 0, 0, 0.3);
 }
 #fh5co-started .btn {
   height: 54px;
   border: none !important;
-  background: #fff;
-  color: #FF9000;
+  background: #dfdada;
+  color: #000;
   font-size: 16px;
   text-transform: uppercase;
   font-weight: 400;
   padding-left: 50px;
   padding-right: 50px;
 }
-
+#fh5co-started .btn:hover {
+  color: #333;
+  background-color: #8c8c8ce7;
+}
+#fh5co-consult .btn {
+  height: 54px;
+  border: none !important;
+  background: #dfdada;
+  color: #000;
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: 400;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+#fh5co-consult .btn:hover {
+  color: #333;
+  background-color: #8c8c8ce7;
+}
 .fh5co-blog {
   width: 100%;
   float: left;
@@ -1246,7 +1264,6 @@ input[type="text"] {
 
 .form-control {
   box-shadow: none;
-  background: transparent;
   border: 2px solid rgba(0, 0, 0, 0.1);
   height: 54px;
   font-size: 18px;
