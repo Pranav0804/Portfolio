@@ -1307,4 +1307,26 @@ input[type="text"] {
   opacity: 0;
 }
 
+#toast {
+  visibility: hidden; /* Hidden by default. Will be shown on form submission */
+  min-width: 250px; /* Set a minimum width */
+  background-color: var(--green); /* Background color */
+  color: #fff; /* White text */
+  text-align: center; /* Centered text */
+  border-radius: 2px; /* Rounded corners */
+  padding: 16px; /* Some padding */
+  position: fixed; /* Sit on top of the page */
+  z-index: 1; /* Sit on top */
+  right: 30px; /* 30px from the right */
+  top: 80px; /* 30px from the top */
+  font-size: 17px; /* Increase font size */
+  transition: visibility 0s, opacity 0.5s linear; /* Transition effects */
+  opacity: 0; /* Hidden by default */
+}
+    
+
+#toast.show {
+  visibility: visible; /* Show the toast */
+  opacity: 1; /* Make it visible */
+}
 /*# sourceMappingURL=style.css.map */

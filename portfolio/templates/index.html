@@ -392,35 +392,30 @@
 			</div>
 			<div class="choose animate-box">
 				<h2>Contact</h2>
-				<form action="#">
+				<form id="contactForm" method="post" data-url="{% url 'contact' %}">							
+					{% csrf_token %}
 					<div class="row form-group">
 						<div class="col-md-6">
-							<input type="text" id="fname" class="form-control" placeholder="Your firstname">
-						</div>
-					</div>
-					<div class="row form-group">
-						<div class="col-md-6">
-							<input type="text" id="lname" class="form-control" placeholder="Your lastname">
+							<input type="text" name="name" class="form-control" placeholder="Your Name" required>
 						</div>
 					</div>
 
 					<div class="row form-group">
 						<div class="col-md-12">
-							<input type="text" id="email" class="form-control" placeholder="Your email address">
+							<input type="email" name="email" class="form-control" placeholder="Your Email" required>
+						</div>
+					</div>
+
+					<div class="row form-group">
+						<div class="col-md-12">							
+							<input type="text" name="subject" class="form-control" placeholder="Subject" required>
 						</div>
 					</div>
 
 					<div class="row form-group">
 						<div class="col-md-12">
-							<input type="text" id="subject" class="form-control"
-								placeholder="Your subject of this message">
-						</div>
-					</div>
-
-					<div class="row form-group">
-						<div class="col-md-12">
-							<textarea name="message" id="message" cols="30" rows="10" class="form-control"
-								placeholder="Say something about us"></textarea>
+							<textarea name="message" id="" cols="30" rows="7" class="form-control" placeholder="Message"
+								required></textarea>
 						</div>
 					</div>
 					<div class="form-group">
@@ -429,6 +424,7 @@
 
 				</form>
 			</div>
+			<div id="toast" class="toast">Message sent successfully!</div>
 		</div>
 
 	</div>
@@ -465,6 +461,38 @@
 	<!-- Main -->
 	<script src="{%  static 'js/main.js' %}"></script>
 
+	<script>
+		$('#contactForm').on('submit', function (event) {
+			event.preventDefault(); // Prevent the default form submission
+			var url = $(this).data('url'); // Get the URL from the data attribute
+			var submitButton = $(this).find('input[type="submit"]');
+			submitButton.prop('disabled', true); // Disable the button
+			submitButton.value = "Sending" // Disable the button
+
+			$.ajax({
+				type: 'POST',
+				url: url, // Use the URL from the data attribute
+				data: $(this).serialize(), // Serialize the form data
+				success: function (response) {
+
+					// Show toast notification
+					$('#contactForm').trigger('reset');
+					var toast = $('#toast');
+					toast.addClass('show'); // Add the show class to make it visible
+					submitButton.prop('disabled', false); // Enable the button
+					submitButton.value = "Send Message"
+					setTimeout(function () {
+						toast.removeClass('show'); // Remove the show class after 3 seconds
+					}, 3000);
+				},
+				error: function (xhr, status, error) {
+					// Handle errors if needed
+					alert('An error occurred: ' + error);
+					submitButton.prop('disabled', false); // Enable the button
+				}
+			});
+		});
+	</script>
 </body>
 
 </html>
